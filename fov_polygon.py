@@ -17,6 +17,7 @@
 '''
 
 from pyproj import Geod
+from shapely.geometry import Polygon
 
 _g = Geod(ellps='clrk66')
 
@@ -48,13 +49,40 @@ def fov_points(lon,
 
     return left, los, right
 
-def fov_polygon(lon,
-                lat,
+def fov_polygon(point,
                 radius=100,
                 azimuth_angle=0,
                 fov_angle=45):
     '''fov_points - but it returns an entire closed polygon (lat-lon order)'''
-    
+
+    lon,lat=point.x, point.y
+                    
     left, los, right = fov_points(lon,lat,radius,azimuth_angle,fov_angle)
 
-    return [(lon,lat), left, los, right, (lon,lat)]
+    return Polygon([(lon,lat), left, los, right, (lon,lat)])
+
+def square_points(lon,
+               lat,
+               radius=100):
+    '''
+        lat (float) : latitude value
+        lon (float) : longitude value
+        radius (float) : (metres) distance from center to corner
+    '''
+        
+    NE = _g.fwd(lon, lat, 0+45, radius)[:-1]
+    SE = _g.fwd(lon, lat, 135, radius)[:-1]
+    SW = _g.fwd(lon, lat, 225, radius)[:-1]
+    NW = _g.fwd(lon, lat, 315, radius)[:-1]
+
+    return NE, SE, SW, NW
+
+def near_polygon(point,
+                radius=100):
+    '''fov_points - but it returns an entire closed polygon (lat-lon order)'''
+
+    lon,lat=point.x, point.y
+    
+    NE, SE, SW, NW = square_points(lon,lat,radius)
+
+    return Polygon([NE, SE, SW, NW, NE])
