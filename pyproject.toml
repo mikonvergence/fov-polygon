@@ -1,0 +1,15 @@
+[project]
+name = "geobuffers"
+description = "geobuffers package"
+version = "0.1"
+authors = [
+    { name = "Mikolaj Czerkawski", email = "mczerkawski96@gmail.com" }
+]
+dependencies = [
+    "shapely",
+    "pyproj"
+]
+
+[build-system]
+build-backend = "flit_core.buildapi"
+requires = ["flit_core >=3.2,<4"]
