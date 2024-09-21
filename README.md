@@ -1,4 +1,4 @@
-# Geobuffers
+# geobuffers
 
 This repository contains code that allows simple definitions of polygons defined around a coordinate of interest using geodesic distances. Some of the functionality can be reproduced with [geopandas buffer](https://geopandas.org/en/stable/docs/reference/api/geopandas.GeoSeries.buffer.html) functionality.
 
