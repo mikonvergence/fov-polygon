@@ -16,13 +16,15 @@ Instead, all methods here rely on [pyproj.Geod](https://pyproj4.github.io/pyproj
 
 ## Example Usage
 ```python
-  import geobuffers as gbf
-  from shapely import Point
+import geobuffers as gbf
+from shapely import Point
 
-  my_point = Point([1.0, -1.0])
+my_point = Point([1.0, -1.0])
 
-  square(my_point)
+gbf.regpol(my_point,3)
 ```
+![triangle](https://github.com/user-attachments/assets/8d116299-cfc5-4b4b-abfa-9739e8691fac)<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100.0" height="100.0" viewBox="0.9991596809433139 -1.0005144579984315 0.001680638113372268 0.001481128328698178" preserveAspectRatio="xMinYMin meet"><g transform="matrix(1,0,0,-1,0,-1.9995477876681649)"><path fill-rule="evenodd" fill="#66cc99" stroke="#555555" stroke-width="3.361276226744536e-05" opacity="0.6" d="M 1.0,-0.9990955755257842 L 1.0007780732006353,-1.0004522121423807 L 0.9992219267993647,-1.0004522121423807 L 1.0,-0.9990955755257842 z" /></g></svg>
+
 
 
 
